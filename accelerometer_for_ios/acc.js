@@ -43,6 +43,19 @@ var initial=function(){
 
 		predtm=dtm;
 
+		while(data.length!=0){
+			if(data[0].dtm<=dtm-10000){
+				data.shift();
+			}else{
+				break;
+			}
+		}
+
+	},false);
+
+	setInterval(function(){
+
+		var dtm=new Date().getTime();
 		var diffdtm=dtm-basedtm;
 
 		svg.setAttribute("viewBox",[diffdtm-10000,-5000,10000,10000].join(" "));
@@ -65,15 +78,7 @@ var initial=function(){
 		svgz.setAttribute("points",aryz.join(" "));
 		svgacc.setAttribute("points",aryacc.join(" "));
 
-		while(data.length!=0){
-			if(data[0].dtm<=dtm-10000){
-				data.shift();
-			}else{
-				break;
-			}
-		}
-
-	},false);
+	},500);
 
 };
 
