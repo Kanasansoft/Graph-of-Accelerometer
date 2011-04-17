@@ -1,0 +1,28 @@
+body{
+	margin:0px;
+	padding:0px;
+}
+#svg{
+	z-index:1;
+	width:100%;
+	height:90%;
+	background-color:#ffffff;
+}
+#value{
+	position:fixed;
+	top:0px;
+	left:0px;
+	z-index:2;
+}
+#valuex{
+	color:#ff0000;
+}
+#valuey{
+	color:#00ff00;
+}
+#valuez{
+	color:#0000ff;
+}
+#valueacc{
+	color:#000000;
+}
