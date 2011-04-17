@@ -1,5 +1,7 @@
 var initial=function(){
 
+	var size=10000;
+
 	var $=function(id){return document.getElementById(id);};
 	var pow=Math.pow;
 
@@ -23,6 +25,11 @@ var initial=function(){
 
 	var data=[];
 
+	svg.setAttribute("viewBox",[-10000,-5000,10000,10000].join(" "));
+	upperline .setAttribute("points","-10000,-2500 0,-2500");
+	middleline.setAttribute("points","-10000,    0 0,    0");
+	lowerline .setAttribute("points","-10000, 2500 0, 2500");
+
 	window.addEventListener("devicemotion",function(evt){
 
 		var gravity=evt.accelerationIncludingGravity;
@@ -44,7 +51,7 @@ var initial=function(){
 		predtm=dtm;
 
 		while(data.length!=0){
-			if(data[0].dtm<=dtm-10000){
+			if(data[0].dtm<=dtm-size){
 				data.shift();
 			}else{
 				break;
@@ -58,20 +65,15 @@ var initial=function(){
 		var dtm=new Date().getTime();
 		var diffdtm=dtm-basedtm;
 
-		svg.setAttribute("viewBox",[diffdtm-10000,-5000,10000,10000].join(" "));
-		upperline .setAttribute("points",diffdtm-10000+",-2500 "+diffdtm+" -2500");
-		middleline.setAttribute("points",diffdtm-10000+    ",0 "+diffdtm+    " 0");
-		lowerline .setAttribute("points",diffdtm-10000+ ",2500 "+diffdtm+ " 2500");
-
 		var aryx=[];
 		var aryy=[];
 		var aryz=[];
 		var aryacc=[];
 		data.forEach(function(obj){
-			aryx.push(obj.dtm-basedtm+","+Math.round(-obj.x*250));
-			aryy.push(obj.dtm-basedtm+","+Math.round(-obj.y*250));
-			aryz.push(obj.dtm-basedtm+","+Math.round(-obj.z*250));
-			aryacc.push(obj.dtm-basedtm+","+Math.round(-obj.acc*250));
+			aryx.push(obj.dtm-dtm+","+Math.round(-obj.x*size/40));
+			aryy.push(obj.dtm-dtm+","+Math.round(-obj.y*size/40));
+			aryz.push(obj.dtm-dtm+","+Math.round(-obj.z*size/40));
+			aryacc.push(obj.dtm-dtm+","+Math.round(-obj.acc*size/40));
 		});
 		svgx.setAttribute("points",aryx.join(" "));
 		svgy.setAttribute("points",aryy.join(" "));
