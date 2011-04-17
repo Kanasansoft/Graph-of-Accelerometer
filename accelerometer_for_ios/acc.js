@@ -50,20 +50,20 @@ var initial=function(){
 
 		predtm=dtm;
 
-		while(data.length!=0){
-			if(data[0].dtm<=dtm-size){
-				data.shift();
-			}else{
-				break;
-			}
-		}
-
 	},false);
 
 	setInterval(function(){
 
 		var dtm=new Date().getTime();
 		var diffdtm=dtm-basedtm;
+
+		while(data.length!=0){
+			if(data[0].dtm<=dtm-size*1){
+				data.shift();
+			}else{
+				break;
+			}
+		}
 
 		var aryx=[];
 		var aryy=[];
